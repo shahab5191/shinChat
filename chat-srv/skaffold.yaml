@@ -1,0 +1,20 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+deploy:
+  kubectl: {}
+manifests:
+  rawYaml:
+    - "./infra/k8s/*"
+build:
+  local:
+    push: false
+  artifacts:
+    - image: shahab5191/shinchat-chat
+      context: ./
+      docker:
+        dockerfile: Dockerfile
+        target: dev
+      sync:
+        manual:
+          - dest: .
+            src: '/src/**/*.ts'
