@@ -5,6 +5,7 @@ import { addMessageToDB } from "../../db/controller/message-controller";
 
 export const messageToClient = (io: Server, socket: Socket) => {
   socket.on("messageToClient", async (data: any, callback) => {
+    console.log('message to client')
     if (!data.reciever || !data.msg) {
       return callback({ err: "provide valid message" });
     }

@@ -8,9 +8,9 @@ import { createServer } from "http";
 
 const app: Application = express();
 
-const httpsServer = createServer(app);
+const httpServer = createServer(app);
 
-const socketServer = new Server(httpsServer, {
+const socketServer = new Server(httpServer, {
   cors: {
     origin: [
       "http://shinchat.com:3000",
@@ -20,6 +20,7 @@ const socketServer = new Server(httpsServer, {
     ],
   },
   cookie: true,
+  transports: ["websocket"],
 });
 const io = socketServer.listen(5000);
 
@@ -54,4 +55,4 @@ app.all("*", (_, res) => {
   res.status(404).send({ error: "404 - Address was not found!" });
 });
 
-export { io, httpsServer };
+export { io, httpServer };

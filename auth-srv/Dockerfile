@@ -26,7 +26,6 @@ RUN npm install --development
 WORKDIR /opt/app
 COPY . .
 ENV POSTGRES_USERNAME=shahab
-ENV POSTGRES_ADDRESS=192.168.1.36
 ENV POSTGRES_PORT=5432
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD ["npm", "run", "dev"]

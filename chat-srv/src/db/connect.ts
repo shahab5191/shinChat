@@ -18,5 +18,4 @@ if (
 }
 const POSTGRES_URL = `postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_ADDRESS}:${POSTGRES_PORT}/chat`;
 const sequelize = new Sequelize(POSTGRES_URL);
-
 export { sequelize };

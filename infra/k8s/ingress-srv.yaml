@@ -5,16 +5,25 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.org/websocket-services: chat-srv
+
 spec:
   ingressClassName: nginx
   rules:
   - host: shinchat.com
     http:
       paths:
-      - pathType: Prefix
+      - path: /api/v1/users/(.*)
+        pathType: Prefix
         backend:
           service:
             name: auth-srv
             port:
               number: 4000
-        path: /api/v1/users/(.*)
+      - path: /socket.io
+        pathType: Prefix
+        backend:
+          service:
+            name: chat-srv
+            port:
+              number: 4001

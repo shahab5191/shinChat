@@ -1,11 +1,10 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../connect";
-import { Message } from "./message";
-import { Conversation } from "./conversation";
 
 export class User extends Model {
   declare id: string;
   declare bannedList: Array<string>;
+  declare username: string
   declare addFriend: (friend: User) => Promise<void>;
   declare getFriends: () => Promise<User[]>;
 }
@@ -16,6 +15,7 @@ User.init(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    username: { type: DataTypes.STRING },
     bannedList: { type: DataTypes.ARRAY(DataTypes.UUID), defaultValue: [] },
   },
   {

@@ -28,6 +28,11 @@ spec:
               key: JWT_SECRET
         - name: URL_PREFIX
           value: "/api/v1"
+        - name: POSTGRES_ADDRESS
+          valueFrom:
+            secretKeyRef:
+              name: postgres-address
+              key: POSTGRES_ADDRESS
 ---
 apiVersion: v1
 kind: Service
