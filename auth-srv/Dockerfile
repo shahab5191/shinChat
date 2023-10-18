@@ -27,6 +27,7 @@ WORKDIR /opt/app
 COPY . .
 ENV POSTGRES_USERNAME=shahab
 ENV POSTGRES_PORT=5432
+ENV RABBITMQ_PORT=5672
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD ["npm", "run", "dev"]
 

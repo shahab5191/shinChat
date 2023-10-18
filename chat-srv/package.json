@@ -18,7 +18,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/amqplib": "^0.10.2",
     "@types/jsonwebtoken": "^9.0.3",
+    "amqplib": "^0.10.3",
     "bcrypt": "^5.1.1",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",

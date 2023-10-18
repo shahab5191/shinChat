@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { User } from "../../../db/models/user";
 import jwt from "jsonwebtoken";
+import { publishToChannel } from "../../../rabbit-mq/publisher";
 
 const router = express.Router();
 
@@ -18,10 +19,11 @@ router.patch(
       return res.status(403).send({ err: "Please provide valid username" });
     }
     const { username } = req.body;
-    console.log(username)
+    console.log(username);
     let token: string;
+    let currentUser;
     try {
-      const currentUser = await User.findOne({
+      currentUser = await User.findOne({
         where: { id: req.currentUser?.id },
       });
       currentUser?.update({ userName: username });
@@ -38,6 +40,15 @@ router.patch(
     } catch (err) {
       return res.status(500).send({ err: "Internal Error!" });
     }
+    await publishToChannel(
+      "user_creation",
+      JSON.stringify({
+        id: currentUser?.id,
+        username: currentUser?.userName,
+        email: currentUser?.email,
+      })
+    );
+
     return res.status(201).send({ username });
   }
 );
