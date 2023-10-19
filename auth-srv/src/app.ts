@@ -11,6 +11,7 @@ import { createServer } from "http";
 import { getFriends } from "./routes/user/relations/get-friends";
 import { addFriendRouter } from "./routes/user/relations/add-friend";
 import { blockRouter } from "./routes/user/relations/add-block";
+import { getBlocksRouter } from "./routes/user/relations/get-blocks";
 
 const app: Application = express();
 
@@ -51,6 +52,7 @@ app.use(addFriendRouter);
 app.use(currentUserRouter);
 app.use(profileRouter);
 app.use(blockRouter);
+app.use(getBlocksRouter)
 
 app.all("*", (_, res) => {
   res.status(404).send({ error: "404 - Address was not found!" });

@@ -12,4 +12,4 @@ router.get(`${process.env.URL_PREFIX}/users/blocks`, async (req, res, next) => {
   res.status(200).send({ blockList: currentUser.blockList });
 });
 
-export { router as getBlockI };
+export { router as getBlocksRouter };
