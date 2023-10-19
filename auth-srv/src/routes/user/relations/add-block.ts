@@ -1,13 +1,12 @@
 import express from "express";
-import { User } from "../../db/models/user";
-import { sequelize } from "../../db/connect";
-import { DataTypes, Sequelize } from "sequelize";
-import { publishToChannel } from "../../rabbit-mq/publisher";
+import { User } from "../../../db/models/user";
+import { sequelize } from "../../../db/connect";
+import { publishToChannel } from "../../../rabbit-mq/publisher";
 
 const router = express.Router();
 
 router.patch(
-  `${process.env.URL_PREFIX}/users/block/:id`,
+  `${process.env.URL_PREFIX}/users/blocks/:id`,
   async (req, res, next) => {
     const blockId = req.params.id;
     if (
@@ -27,7 +26,7 @@ router.patch(
     if (!currentUser) {
       throw new Error("Authenticated user is not in database!");
     }
-    if (currentUser.bannedList.includes(blockId)) {
+    if (currentUser.blockList.includes(blockId)) {
       return res.status(304).send();
     }
 
@@ -45,9 +44,9 @@ router.patch(
     }
 
     await currentUser.update({
-      bannedList: sequelize.fn(
+      blockList: sequelize.fn(
         "array_append",
-        sequelize.col("bannedList"),
+        sequelize.col("blockList"),
         blockId
       ),
     });

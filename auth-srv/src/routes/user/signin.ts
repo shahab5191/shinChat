@@ -40,7 +40,12 @@ router.post(
 
       return res
         .status(200)
-        .send({ id: foundUser.id, email, username: foundUser.userName });
+        .send({
+          id: foundUser.id,
+          email,
+          username: foundUser.userName,
+          token
+        });
     } catch (error) {
       return res.status(500).send({ err: "Server Error!" });
     }

@@ -8,9 +8,9 @@ import { currentUserRouter } from "./routes/user/current";
 import { profileRouter } from "./routes/user/profile/profile";
 import cors from "cors";
 import { createServer } from "http";
-import { getFriends } from "./routes/user/friends/get-friends";
-import { addFriendRouter } from "./routes/user/friends/add-friend";
-import { blockRouter } from "./routes/user/block";
+import { getFriends } from "./routes/user/relations/get-friends";
+import { addFriendRouter } from "./routes/user/relations/add-friend";
+import { blockRouter } from "./routes/user/relations/add-block";
 
 const app: Application = express();
 

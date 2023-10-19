@@ -22,7 +22,7 @@ const startService = async (): Promise<void> => {
     await subscribeToQeue("user_creation", "user");
 
     await User.create({
-      bannedList: [],
+      blockList: [],
       username: "shahab5191",
     });
     console.log("Connection to database has been established!");

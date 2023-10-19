@@ -40,6 +40,7 @@ router.post(
       id: newUser.id,
       email: newUser.email,
       username: newUser.userName,
+      token
     });
   }
 );

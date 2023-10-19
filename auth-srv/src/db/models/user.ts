@@ -8,7 +8,7 @@ export class User extends Model {
   declare userName: string;
   declare salt: string;
   declare password: string;
-  declare bannedList: Array<string>;
+  declare blockList: Array<string>;
   declare addFriend: (friend: User) => Promise<void>;
   declare getFriends: () => Promise<User[]>;
 }
@@ -27,7 +27,7 @@ User.init(
     userName: { type: DataTypes.STRING },
     salt: { type: DataTypes.STRING },
     password: { type: DataTypes.STRING },
-    bannedList: { type: DataTypes.ARRAY(DataTypes.UUID), defaultValue: [] },
+    blockList: { type: DataTypes.ARRAY(DataTypes.UUID), defaultValue: [] },
   },
   {
     sequelize,
