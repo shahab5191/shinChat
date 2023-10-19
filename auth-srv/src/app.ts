@@ -10,6 +10,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { getFriends } from "./routes/user/friends/get-friends";
 import { addFriendRouter } from "./routes/user/friends/add-friend";
+import { blockRouter } from "./routes/user/block";
 
 const app: Application = express();
 
@@ -49,6 +50,7 @@ app.use(getFriends);
 app.use(addFriendRouter);
 app.use(currentUserRouter);
 app.use(profileRouter);
+app.use(blockRouter);
 
 app.all("*", (_, res) => {
   res.status(404).send({ error: "404 - Address was not found!" });

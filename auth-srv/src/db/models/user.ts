@@ -18,6 +18,9 @@ User.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      validate:{
+        isUUID: 4
+      }
     },
     email: { type: DataTypes.STRING },
     firstName: { type: DataTypes.STRING },
