@@ -3,13 +3,13 @@ import jwt from "jsonwebtoken";
 import { seperateTokenFromHeader } from "../../utils/encrypt";
 
 export const validator = (req: Request, res: Response, next: NextFunction) => {
-  if (req.session === undefined || !req.session?.isPopulated) {
-    return res.status(403).send({ err: "Unauthorized Access!" });
-  }
   if (!req.headers.authorization) {
     return res.status(403).send({ err: "Unauthorized action" });
   }
   const token = seperateTokenFromHeader(req.headers.authorization);
+  if(!token){
+    return res.status(403).send({err: "Unauthorized action"})
+  }
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET!);
     if (typeof decodedToken === "string") {

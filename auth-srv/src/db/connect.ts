@@ -17,6 +17,8 @@ if (
   throw new Error("Postgress connection data is not available!");
 }
 const POSTGRES_URL = `postgres://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_ADDRESS}:${POSTGRES_PORT}`;
-const sequelize = new Sequelize(POSTGRES_URL);
+const sequelize = new Sequelize(POSTGRES_URL, {
+  logging: process.env.NODE_ENV === "dev",
+});
 
 export { sequelize };

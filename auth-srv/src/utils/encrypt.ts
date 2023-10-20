@@ -10,6 +10,5 @@ export const hashPassword = async (password: string, salt?: string) => {
 
 export const seperateTokenFromHeader = (header: string) => {
   const token = header.split(" ")[1];
-  console.log(token)
   return token
 };

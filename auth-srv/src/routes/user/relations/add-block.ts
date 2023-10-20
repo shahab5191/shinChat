@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.patch(
   `${process.env.URL_PREFIX}/users/blocks/:id`,
-  async (req, res, next) => {
+  async (req, res) => {
     const blockId = req.params.id;
     if (
       !blockId.match(
